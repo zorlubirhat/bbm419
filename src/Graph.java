@@ -70,7 +70,7 @@ public class Graph {
             for(int j = 0; j < B.length; j++){
                 visited[j] = true;
                 if(getEdge(i, j) == w){
-                    if(isCycleHelper(j, i, n, w))
+                    if(isConnected(j, i, n, w))
                         return true;
                 }
                 visited[j] = false;
@@ -80,7 +80,7 @@ public class Graph {
         return false;
     }
     
-    private boolean isCycleHelper(int u, int v, int n, int w){
+    private boolean isConnected(int u, int v, int n, int w){
         if(n == 2){
             if(getEdge(u, v) == w)
                 return true;
@@ -90,7 +90,7 @@ public class Graph {
             for(int i = 0; i < B.length; i++){
                 if(getEdge(u, i) == w && !visited[i]){
                     visited[i] = true;
-                    boolean temp = isCycleHelper(i, v, --n, w);
+                    boolean temp = isConnected(i, v, --n, w);
                     visited[i] = false;
                     return temp;
                 }
@@ -98,4 +98,6 @@ public class Graph {
         }
         return false;
     }
+    
+   
 }
