@@ -66,18 +66,18 @@ public class Graph {
       
     // Prints all paths from 
     // 's' to 'd' 
-    public void printAllPaths(int s, int d)  
+    public void printAll(int s, int d)  
     { 
         boolean[] isVisited = new boolean[v]; 
           
         //Call recursive utility 
-        printAllPathsUtil(s, d, isVisited); 
+        printAllUtil(s, d, isVisited); 
     } 
   
     // A recursive function to print 
     // all paths from 'u' to 'd'. 
     // isVisited[] keeps track of 
-    private void printAllPathsUtil(Integer u, Integer d, 
+    private void printAllUtil(Integer u, Integer d, 
                                     boolean[] isVisited) { 
           
         // Mark the current node 
@@ -98,7 +98,7 @@ public class Graph {
         { 
             if (!isVisited[i]) 
             {  
-                printAllPathsUtil(i, d, isVisited); 
+                printAllUtil(i, d, isVisited); 
             } 
         } 
           
@@ -130,7 +130,7 @@ public class Graph {
       
         // arbitrary destination 
         int d = 7; 
-        g.printAllPaths(s, d); 
+        g.printAll(s, d); 
   
     } 
 }
