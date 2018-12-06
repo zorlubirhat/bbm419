@@ -27,7 +27,7 @@ public class minMax {
 			// Recur for left and 
 			// right children 
 			 
-			for(int i = 0; i < G.sizeOfGraph(); i++){
+		for(int i = 0; i < G.sizeOfGraph(); i++){
 	            for(int j = i+1; j < G.sizeOfGraph(); j++){
 	              if(!G.isEdge(i, j)){
 		               
@@ -55,7 +55,7 @@ public class minMax {
 
 			// Recur for left and 
 			// right children 
-			for(int i = 0; i < G.sizeOfGraph(); i++){
+		for(int i = 0; i < G.sizeOfGraph(); i++){
 	            for(int j = i+1; j < G.sizeOfGraph(); j++){
 	              if(!G.isEdge(i, j)){
 			 
