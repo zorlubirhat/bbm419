@@ -9,10 +9,10 @@
         int max = -10000;
 
         Move best = new Move(0, 1);
-        for(int mmm = 0; mmm < 5; mmm++){
-            for(int nnn = 0; nnn < 5; nnn++){
-                if(G.isEdge(mmm, nnn) == false && mmm != nnn){
-                    best = new Move(mmm, nnn);
+        for(int k = 0; k < 6; k++){
+            for(int l = 0; l < 6; l++){
+                if(G.isEdge(k, l) == false && k != l){
+                    best = new Move(k, l);
             }
           }
         }
@@ -55,9 +55,9 @@
           g.addEdge(4, 3,1); 
           g.addEdge(2, 3,1); 
           g.addEdge(3, 1,1); 
-          g.addEdge(4, 5,1);
+          g.addEdge(1, 5,1);
           g.addEdge(4, 0,1);
-          g.addEdge(3, 5,1);
+          g.addEdge(1, 5,1);
           g.addEdge(0, 5,1);
           g.addEdge(1, 4,1);
     
