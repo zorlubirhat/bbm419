@@ -1,12 +1,11 @@
 public class Player1{
-      
-      static minMax minMax = new minMax();
+	static minMax minMax = new minMax();
 
-      //chooseMove - This method will utilize eval and minMax to decide what move
-      // would be the best decision by the computer. It assesses different values for
-      // every positibility of that the game could go to, and keep track of the best decision.
-      public static Move chooseMove(Graph G) { 
-        int max = -10000;
+	//chooseMove - This method will utilize eval and minMax to decide what move
+	// would be the best decision by the computer. It assesses different values for
+	// every positibility of that the game could go to, and keep track of the best decision.
+	public static Move chooseMove(Graph G) { 
+		int max = -10000;
 
         Move best = new Move(0, 1);
         for(int k = 0; k < 6; k++){
@@ -16,6 +15,22 @@ public class Player1{
             }
           }
         }
+        /*Move best = new Move(5, 4);
+        for(int k = 5; k > 0; k--){
+            for(int l = 5; l > 0; l--){
+                if(G.isEdge(k, l) == false && k != l){
+                    best = new Move(k, l);
+            }
+          }
+        }*/
+        /*Move best = new Move(1, 2);
+        for(int k = 1; k < 6; k++){
+            for(int l = 2; l < 5; l++){
+                if(G.isEdge(k, l) == false && k != l){
+                    best = new Move(k, l);
+            }
+          }
+        }*/
 
         for(int i = 0; i < G.sizeOfGraph(); i++){
           for(int j = i+1; j < G.sizeOfGraph(); j++){
@@ -39,51 +54,7 @@ public class Player1{
         }
         System.out.println("Best move: " +best);
         return best; 
-      }
-
-      
-
-      
-      
-      /*public static void main(String args[]) {
-    	  Graph g = new Graph(6); 
-          Player p = new Player();
-    
-          g.addEdge(0, 2, 1); 
-          g.addEdge(4, 2, 1); 
-          g.addEdge(2, 1, 1); 
-          g.addEdge(4, 3, 1); 
-          g.addEdge(2, 3, 1); 
-          g.addEdge(3, 1, 1); 
-          g.addEdge(1, 5, 1);
-          g.addEdge(4, 0, 1);
-          g.addEdge(1, 5, 1);
-          g.addEdge(0, 5, 1);
-          g.addEdge(1, 4, 1);
-    
-          if(g.makerList.size()==6) {
-          	//System.out.println(count);
-          	p.chooseMove(g);
-          }
-          	
-          else {
-          	System.out.println("Breakers win");
-          }
-          if(g.makerList.size()==6) {
-          	g.DFS(0,1);
-          	//System.out.println(g.count);
-          	if(g.count>=5) {
-          		System.out.println("Maker wins");
-          	}
-          	else {
-          		System.out.println("Breaker wins");
-          	}
-          }
-          else {
-          	System.out.println("Breaker wins");
-          }
-    	    
-      }*/
-    }
+	}
+}
     
     
