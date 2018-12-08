@@ -268,13 +268,10 @@ public class gameGraph{
 
     
 
-    // comment-in the second line and comment-out the first to use your Player class
-
-    
-
-    //     RandomPlayer P = new RandomPlayer(); 
 
     Player P = new Player(); 
+    Player1 P1 = new Player1(); 
+
 
     
 
@@ -332,7 +329,7 @@ public class gameGraph{
 
           
 
-          if(source != target && !G.isEdge(source,target)) {
+          /*if(source != target && !G.isEdge(source,target)) {
 
             G.addEdge(source, target,1);
 
@@ -360,7 +357,12 @@ public class gameGraph{
 
             continue; 
 
-          }
+          }*/
+          Move m1 = P1.chooseMove(G);
+
+          System.out.println(m1);
+
+          G.addEdge(m1.source, m1.target, 1);
 
           
 
@@ -371,7 +373,7 @@ public class gameGraph{
           if(G.DFS(0,1)) {
 
             canvas.setPaint(Color.BLACK);
-
+            
             canvas.drawString("Maker Wins!", 100, 550);
 
             break;
@@ -400,7 +402,7 @@ public class gameGraph{
 
           
 
-          /*if(G.DFS(0,-1)) {
+          if(G.DFS(0,-1)) {
 
             canvas.setPaint(Color.BLACK);
 
@@ -408,7 +410,7 @@ public class gameGraph{
 
             break;
 
-          }*/
+          }
 
           
 
