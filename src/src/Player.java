@@ -1,4 +1,4 @@
-    public class Player{
+public class Player{
       
       static minMax minMax = new minMax();
 
@@ -26,7 +26,7 @@
             	System.out.print(j + " are I and J");
             	G.addEdge(i, j, 1);
             	Move m = new Move(i, j);
-            	int val = minMax.minMax( G, 1, 0, 0);
+            	int val = minMax.minmax( G, 1,true, 0, 0);
             	System.out.println(val + " | " + i +  " " + j);
             	if(val >= max) {
             		System.out.println("New best");
@@ -41,49 +41,6 @@
         return best; 
       }
 
-      
-
-      
-      
-      public static void main(String args[]) {
-    	  Graph g = new Graph(6); 
-          Player p = new Player();
-    
-          g.addEdge(0, 2,1); 
-          g.addEdge(4,2,1); 
-          g.addEdge(2, 1,1); 
-          g.addEdge(4, 3,1); 
-          g.addEdge(2, 3,1); 
-          g.addEdge(3, 1,1); 
-          g.addEdge(1, 5,1);
-          g.addEdge(4, 0,1);
-          g.addEdge(1, 5,1);
-          g.addEdge(0, 5,1);
-          g.addEdge(1, 4,1);
-    
-          if(g.makerList.size()==6) {
-          	//System.out.println(count);
-          	p.chooseMove(g);
-          }
-          	
-          else {
-          	System.out.println("Breakers win");
-          }
-          if(g.makerList.size()==6) {
-          	g.DFS(0);
-          	//System.out.println(g.count);
-          	if(g.count>=5) {
-          		System.out.println("Maker wins");
-          	}
-          	else {
-          		System.out.println("Breaker wins");
-          	}
-          }
-          else {
-          	System.out.println("Breaker wins");
-          }
-    	    
-      }
     }
     
     
