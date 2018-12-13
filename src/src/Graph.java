@@ -1,17 +1,16 @@
 // Java program to print DFS traversal from a given given graph 
 import java.util.*; 
   
-// This class represents a directed graph using adjacency list 
-// representation 
+// This class represents a directed graph using adjacency list representation 
 class Graph 
 { 
-    private int V;   // No. of vertices 
+    private int V;   // Number of vertices 
     static int count;
   
     private static int[][] M;
     // Array  of lists for Adjacency List Representation 
     private LinkedList<Integer> adj[]; 
-    static ArrayList<Integer> makerList = new ArrayList<>(); 
+    ArrayList<Integer> makerList = new ArrayList<>(); 
     ArrayList<Integer> breakerList = new ArrayList<>();
     static ArrayList<Integer> dfsList = new ArrayList<>();
     Set<Integer> hs = new HashSet<>();
@@ -35,13 +34,12 @@ class Graph
         
         this.M[v][u] = w;
         this.M[u][v] = w;
-        //this.M[destination][source] = w;
-        
         
         if(w==1) {
             // Add v to u's list. 
         		 
             makerList.add(u);
+            makerList.add(v);
            	hs.addAll(makerList);
            	makerList.clear();
            	makerList.addAll(hs);
@@ -80,15 +78,6 @@ class Graph
         return counter;
     }
     
-    /*public int degree(int v, int w){                // return the number of edges of color w connected to vertex v
-        int counter = 0;
-        for(int i = 0; i < this.M[v].length; ++i){
-            if(this.M[v][i] == w){
-                counter++;
-            }
-        }
-        return counter;
-    }*/
     
     public int sizeOfGraph(){
         return M.length;
@@ -104,32 +93,56 @@ class Graph
     
   
     // A function used by DFS 
-    public boolean DFSUtil(int v,boolean visited[]) 
+    public boolean DFSUtil(int v,boolean visited[],int w) 
     { 
         // Mark the current node as visited and print it 
         visited[v] = true; 
-        //System.out.print(v+" "); 
+        System.out.print(v+" "); 
   
         // Recur for all the vertices adjacent to this vertex 
         Iterator<Integer> i = adj[v].listIterator(); 
         while (i.hasNext()) 
         { 
             int n = i.next(); 
-            if (!visited[n] && getEdge(v,n)==1) {
-            	count++;
-                DFSUtil(n, visited); }
+            if (!visited[n] && getEdge(v,n)==w) {
+            	DFSUtil(n, visited,w); 
+            	count++;   
+            }
+            if(count==5) {
+            	return true;
+            }
         } 
-        return false;
+		return false;
     } 
   
     // The function to do DFS traversal. It uses recursive DFSUtil() 
-    boolean DFS(int v) 
+    boolean DFS(int v,int w) 
     { 
-        // Mark all the vertices as not visited(set as 
-        // false by default in java) 
+        // Mark all the vertices as not visited(set as false by default in java) 
         boolean visited[] = new boolean[V]; 
   
-        return DFSUtil(v, visited); 
+        return DFSUtil(v, visited,w);
     } 
   
-   
+    public static void main(String args[]) 
+    { 
+        Graph g = new Graph(6); 
+  
+        g.addEdge(0, 2, 1); 
+        g.addEdge(2, 1, 1); 
+        g.addEdge(2, 3, 1); 
+        g.addEdge(4, 3, 1); 
+        g.addEdge(3, 5, -1); 
+        g.addEdge(3, 1, -1); 
+        g.addEdge(4, 5, 1);
+  
+        System.out.println(g.DFS(0,1));
+        if(count==5) {
+        	System.out.println("Maker wins");
+        }
+        else {
+        	System.out.println("Breaker wins");
+        }
+         
+    }
+} 
