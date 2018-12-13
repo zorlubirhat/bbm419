@@ -1,43 +1,33 @@
-// Java program to print DFS traversal from a given given graph 
 import java.util.*; 
   
-// This class represents a directed graph using adjacency list representation 
 class Graph 
 { 
     private int V;   // Number of vertices 
     static int count;
-  
     private static int[][] M;
-    // Array  of lists for Adjacency List Representation 
-    private LinkedList<Integer> adj[]; 
-    ArrayList<Integer> makerList = new ArrayList<>(); 
-    ArrayList<Integer> breakerList = new ArrayList<>();
+    private LinkedList<Integer> adj[]; // Array  of lists for Adjacency List Representation 
+    ArrayList<Integer> makerList = new ArrayList<>(); // Array  of lists for Maker List Representation 
+    ArrayList<Integer> breakerList = new ArrayList<>(); // Array  of lists for Breaker List Representation 
     static ArrayList<Integer> dfsList = new ArrayList<>();
     Set<Integer> hs = new HashSet<>();
     Set<Integer> hs1 = new HashSet<>();
     
-    // Constructor 
-    Graph(int v) 
-    { 
+    Graph(int v) { 
     	M = new int[v][v];
         V = v; 
         adj = new LinkedList[v]; 
         for (int i=0; i<v; ++i) 
             adj[i] = new LinkedList(); 
     } 
-  
-    //Function to add an edge into the graph 
-    void addEdge(int v,int u, int w) 
-    { 
-        adj[v].add(u);  // Add w to v's list. 
+    
+    void addEdge(int v,int u, int w) { 
+        adj[v].add(u); 
         adj[u].add(v);
         
         this.M[v][u] = w;
         this.M[u][v] = w;
         
-        if(w==1) {
-            // Add v to u's list. 
-        		 
+        if(w==1) {         		 
             makerList.add(u);
             makerList.add(v);
            	hs.addAll(makerList);
@@ -51,8 +41,7 @@ class Graph
         	breakerList.addAll(hs1);
         }
     } 
-    public void removeEdge(int v, int u){         // remove the edge from u to v and the (duplicate) edge from v to u
-    	
+    public void removeEdge(int v, int u){
     	this.M[u][v] = 0;
         this.M[v][u] = 0;
     }
@@ -60,7 +49,7 @@ class Graph
     	return M[v][u];
     }
     
-    public boolean isEdge(int u, int v){            // return true or false depending on whether there is an edge (of either color) from u to v
+    public boolean isEdge(int u, int v){ 
         if(this.M[u][v] != 0){
             return true;
         }else{
@@ -68,7 +57,7 @@ class Graph
         }
     }
     
-    public int degree(int v){                       // return the number of edges of either color connected to vertex v
+    public int degree(int v){
         int counter = 0;
         for(int i = 0; i < this.M[v].length; ++i){
             if(this.M[v][i] != 0){
@@ -93,41 +82,31 @@ class Graph
     
   
     // A function used by DFS 
-    public boolean DFSUtil(int v,boolean visited[],int w) 
-    { 
-        // Mark the current node as visited and print it 
+    public boolean isConnectedSpanningTree(int v,boolean visited[],int w) {  
         visited[v] = true; 
-        System.out.print(v+" "); 
-  
-        // Recur for all the vertices adjacent to this vertex 
+        //System.out.print(v+" "); 
         Iterator<Integer> i = adj[v].listIterator(); 
-        while (i.hasNext()) 
-        { 
-            int n = i.next(); 
+        while (i.hasNext()) { 
+        	int n = i.next(); 
             if (!visited[n] && getEdge(v,n)==w) {
-            	DFSUtil(n, visited,w); 
+            	isConnectedSpanningTree(n, visited,w); 
             	count++;   
             }
-            if(count==5) {
+            if(count==5){
             	return true;
             }
         } 
 		return false;
     } 
-  
-    // The function to do DFS traversal. It uses recursive DFSUtil() 
-    boolean DFS(int v,int w) 
-    { 
-        // Mark all the vertices as not visited(set as false by default in java) 
+   
+    boolean DFS(int v,int w) { 
         boolean visited[] = new boolean[V]; 
-  
-        return DFSUtil(v, visited,w);
+        return isConnectedSpanningTree(v, visited,w);
     } 
   
-    public static void main(String args[]) 
-    { 
+    public static void main(String args[]) { 
         Graph g = new Graph(6); 
-  
+        
         g.addEdge(0, 2, 1); 
         g.addEdge(2, 1, 1); 
         g.addEdge(2, 3, 1); 
