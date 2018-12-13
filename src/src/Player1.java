@@ -1,29 +1,26 @@
 public class Player1{
+	
 	static minMax minMax = new minMax();
-
-	//chooseMove - This method will utilize eval and minMax to decide what move
-	// would be the best decision by the computer. It assesses different values for
-	// every positibility of that the game could go to, and keep track of the best decision.
+	
 	public static Move chooseMove(Graph G) { 
 		int max = -10000;
-
-        Move best = new Move(0, 1);
+       /*Move best = new Move(0, 1);
         for(int k = 0; k < 6; k++){
             for(int l = 0; l < 6; l++){
                 if(G.isEdge(k, l) == false && k != l){
                     best = new Move(k, l);
             }
           }
-        }
-        /*Move best = new Move(5, 4);
+        }*/
+        Move best = new Move(5, 4);
         for(int k = 5; k > 0; k--){
             for(int l = 5; l > 0; l--){
                 if(G.isEdge(k, l) == false && k != l){
                     best = new Move(k, l);
             }
           }
-        }*/
-        /*Move best = new Move(1, 2);
+        }
+       /* Move best = new Move(1, 2);
         for(int k = 1; k < 6; k++){
             for(int l = 2; l < 5; l++){
                 if(G.isEdge(k, l) == false && k != l){
@@ -35,8 +32,6 @@ public class Player1{
         for(int i = 0; i < G.sizeOfGraph(); i++){
           for(int j = i+1; j < G.sizeOfGraph(); j++){
             if(i != j && G.isEdge(i, j) == false){
-            	/*System.out.println(i);
-            	System.out.println(j);*/
             	System.out.print(i+" and ");
             	System.out.print(j + " are I and J");
             	G.addEdge(i, j, 1);
